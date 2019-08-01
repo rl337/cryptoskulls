@@ -30,6 +30,16 @@ class Collage(object):
     def __del__(self):
         self.im.close()
 
+    def list_colors(self):
+        colors = []
+        for x in range(self.im.width):
+            for y in range(self.im.height):
+                val = self.im.getpixel((x,y))
+                if val not in colors:
+                    colors.append(val)
+
+        return colors
+
     def get_by_id(self, id):
         n = int(id)
         assert n >= 0 and n < self.total_items, "Item id %d is not a valid item" % n
